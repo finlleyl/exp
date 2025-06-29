@@ -8,7 +8,7 @@ on:
     branches: [ main, master, develop ]
 
 env:
-  GO_VERSION: '1.23'
+  GO_VERSION: '1.24'
   CGO_ENABLED: 0
 
 jobs:
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: [1.22, 1.23]
+        go-version: [1.23, 1.24]
         os: [ubuntu-latest, windows-latest]
     steps:
       - name: Checkout code
@@ -107,8 +107,6 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    env:
-      GOTOOLCHAIN: path
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -123,7 +121,8 @@ jobs:
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v6
         with:
-          version: v1.61
+          version: v1.64.8
+          install-mode: source
           args: --timeout=30m --config=./.golangci.pipeline.yaml
           only-new-issues: true
 
