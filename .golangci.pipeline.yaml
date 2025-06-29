@@ -13,7 +13,7 @@ run:
     - var
     - tmp
     - .cache
-
+    
 output:
   formats: [colored-line-number]
   print-issued-lines: true
